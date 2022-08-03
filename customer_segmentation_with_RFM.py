@@ -99,20 +99,6 @@ rfm['segment'] = rfm['RF_SCORE'].replace(seg_map, regex=True)
 
 rfm[["segment", "recency", "frequency", "monetary"]].groupby("segment").agg(["mean", "count"])
 
-"""## (Champions | Loyals) & Female Category ##
-rfm.reset_index(inplace=True)
-rfm.columns
-rfm_interested_v1 = rfm[(rfm["segment"] == "champions") | (rfm["segment"] == "loyal_customers")]
-
-len(rfm_interested_v1)
-
-rfm_interested_v1 = rfm_interested_v1.merge(df, on="master_id", how="outer")
-rfm_interested_v1 = rfm_interested_v1[["RF_SCORE", "interested_in_categories_12"]]
-rfm_interested_v1.dropna(inplace=True)
-
-rfm_interested_v1 = rfm_interested_v1[rfm_interested_v1["interested_in_categories_12"].str.contains("KADIN")]
-"""
-
 rfm_interested_v2 = rfm[(rfm["segment"] == "champions") | (rfm["segment"] == "loyal_customers")]
 df_v2 = df[df["interested_in_categories_12"].str.contains("KADIN")]
 
